@@ -1,5 +1,5 @@
-opencv_python==4.10.0.84
-ultralytics==8.2.46
+opencv_python
+ultralytics
 flask
 Flask-Session
 torch
