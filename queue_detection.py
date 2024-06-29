@@ -6,7 +6,7 @@ def queue_management():
     cuda_available = torch.cuda.is_available()
     device = "cuda" if cuda_available else "cpu"
     # Cargar el modelo YOLO
-    model = YOLO("yolov10n.pt", verbose=True)
+    model = YOLO("yolov10m.pt", verbose=True)
     model.to(device)
     cap = cv2.VideoCapture("data\VID_20240628_175447.mp4")
     assert cap.isOpened(), "Error leyendo el archivo de video"
@@ -17,7 +17,7 @@ def queue_management():
     print(f"Original resolution: {w}x{h}, Rescaled resolution: {new_w}x{new_h}")
     
     # Definir la región de interés (ROI)
-    queue_region = [(1920, 1080), (1920, 980), (1120, 500), (1050, 500), (1450, 1080)]
+    queue_region = [(1920, 1080), (1920, 980), (1120, 500), (1000, 500), (1450, 1080)]
 
     queue = solutions.QueueManager(
         classes_names=model.names,
