@@ -8,7 +8,7 @@ def queue_management():
     # Cargar el modelo YOLO
     model = YOLO("yolov10m.pt", verbose=True)
     model.to(device)
-    cap = cv2.VideoCapture("data\VID_20240628_175447.mp4")
+    cap = cv2.VideoCapture("data/videotrafico2.mp4")
     assert cap.isOpened(), "Error leyendo el archivo de video"
     
     w, h, fps = (int(cap.get(x)) for x in (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT, cv2.CAP_PROP_FPS))

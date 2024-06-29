@@ -5,7 +5,7 @@ import torch
 import json
 class SpeedTrack:
     def __init__(self):
-        pass
+        self.json_data = None
     def get_speed(self):
         # Verificar la disponibilidad de CUDA para usar GPU
         cuda_available = torch.cuda.is_available()
@@ -17,7 +17,7 @@ class SpeedTrack:
         names = model.names
 
         # Abrir el archivo de video
-        cap = cv2.VideoCapture("data/VID-20240628-WA0023.mp4")
+        cap = cv2.VideoCapture("data/videotrafico.mp4")
         assert cap.isOpened(), "Error leyendo el archivo de video"
 
         # Obtener las dimensiones del video y los fps
