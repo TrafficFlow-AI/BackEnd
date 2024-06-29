@@ -44,7 +44,6 @@ class QueueTrack:
                 # Dibujar el contador en la parte superior izquierda
                 # cv2.putText(im0, f'Count: {queue.view_queue_counts}', (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 3)
 
-                video_writer.write(im0_rescaled)
                 ret, buffer = cv2.imencode('.jpg', im0_rescaled)
                 frame = buffer.tobytes()
                 self.counts_display = queue.counts_display
