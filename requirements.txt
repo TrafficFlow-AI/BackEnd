@@ -1,0 +1,7 @@
+opencv_python==4.10.0.84
+ultralytics==8.2.46
+flask
+Flask-Session
+torch
+torchvision
+torchaudio
