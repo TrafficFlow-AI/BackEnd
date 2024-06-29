@@ -1,3 +1,7 @@
+/data
+yolov8n.pt
+*.avi
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
