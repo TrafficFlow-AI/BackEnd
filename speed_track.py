@@ -44,8 +44,9 @@ class SpeedTrack:
             # Estimar la velocidad en ambas mitadesç
             frame = speed_obj_2.estimate_speed(im0, tracks, region_color=(255, 255, 255))
             df = speed_obj_2.df_speed
-            df_json = df.to_json(orient='records')
-            self.json_data = json.dumps(df_json).encode('utf-8')
+            df_json = df.to_json()
+            df_json_1 = json.loads(df_json)
+            self.json_data = json.dumps(df_json_1)
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'

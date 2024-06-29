@@ -1,12 +1,19 @@
 from speed_track import SpeedTrack
 from queue_detection import QueueTrack
 from flask import Flask, render_template_string, Response
+from flask_cors import CORS
+
+
 import time
+import json
 
 speed_tracker = SpeedTrack()
 queue_manager = QueueTrack()
 
 app = Flask(__name__)
+
+app.config['CORS_HEADERS'] = 'Content-Type'
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/speed_estimation')
 def speed_estimation():
@@ -24,11 +31,22 @@ def get_speed_data():
 
     Returns:
         A generator that yields the latest `json_data` as a string in the format "data: {json_data}".
-
     """
-    while True:
-        time.sleep(1)
-        yield f"data: {speed_tracker.json_data}\n\n"
+    def generate():
+        while True:
+            json_data = [
+                {"track_id":{"0":2},"speed":{"0":46}},
+                {"track_id":{"0":2,"1":3},"speed":{"0":46,"1":78}},
+                {"track_id":{"0":2},"speed":{"0":46}},
+                {"track_id":{"0":2,"1":3},"speed":{"0":46,"1":78}},
+                {"track_id":{"0":2},"speed":{"0":46}},
+                {"track_id":{"0":2,"1":3},"speed":{"0":46,"1":78}}
+            ]
+            for i in json_data:
+                time.sleep(1)
+                data = json.dumps(i)
+                yield f"data: {data}\n\n"
+    return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/queue_detection')
 def queue_detection():

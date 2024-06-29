@@ -188,7 +188,7 @@ class SpeedEstimator:
 
     def display_frames(self):
         """Displays the current frame."""
-        cv2.imshow("Ultralytics Speed Estimation", self.im0)
+        #cv2.imshow("Ultralytics Speed Estimation", self.im0)
         if cv2.waitKey(1) & 0xFF == ord("q"):
             return
 
