@@ -34,18 +34,8 @@ def get_speed_data():
     """
     def generate():
         while True:
-            json_data = [
-                {"track_id":{"0":2},"speed":{"0":46}},
-                {"track_id":{"0":2,"1":3},"speed":{"0":46,"1":78}},
-                {"track_id":{"0":2},"speed":{"0":46}},
-                {"track_id":{"0":2,"1":3},"speed":{"0":46,"1":78}},
-                {"track_id":{"0":2},"speed":{"0":46}},
-                {"track_id":{"0":2,"1":3},"speed":{"0":46,"1":78}}
-            ]
-            for i in json_data:
-                time.sleep(1)
-                data = json.dumps(i)
-                yield f"data: {data}\n\n"
+            time.sleep(1)
+            yield f"data: {speed_tracker.json_data}\n\n"
     return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/queue_detection')
@@ -74,4 +64,4 @@ def get_queue_data():
         yield f"data: {queue_manager.counts_display}\n\n"
         
 if __name__ == '__main__':
-    app.run(debug=True)#,host="192.168.111.109")
+    app.run(debug=True,host="192.168.111.109")
