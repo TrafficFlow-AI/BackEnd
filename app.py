@@ -59,9 +59,15 @@ def get_queue_data():
     Returns:
         A generator that yields the latest `json_data` as a string in the format "data: {json_data}".
     """
-    while True:
-        time.sleep(1)
-        yield f"data: {queue_manager.counts_display}\n\n"
-        
+    def generate():
+        while True:
+            time.sleep(1)
+            count = queue_manager.counts_display
+            json_data = {
+                'counts': count}
+            json_data_1 = json.dumps(json_data)
+            yield f"data: {json_data_1}\n\n"
+    return Response(generate(), mimetype='text/event-stream')
+
 if __name__ == '__main__':
-    app.run(debug=True,host="192.168.111.109")
+    app.run(debug=True)#, host="10.0.2.52", port=5033)
