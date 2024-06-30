@@ -63,6 +63,7 @@ def get_queue_data():
         while True:
             time.sleep(1)
             count = queue_manager.counts_display
+
             json_data = {
                 'counts': count}
             json_data_1 = json.dumps(json_data)

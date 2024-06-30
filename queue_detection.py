@@ -4,7 +4,7 @@ import torch
 from src.custom_queue.queue_management import QueueManager
 class QueueTrack:
     def __init__(self):
-        self.json_data = None
+        self.counts_display = 0
             
     def queue_management(self):
         cuda_available = torch.cuda.is_available()
