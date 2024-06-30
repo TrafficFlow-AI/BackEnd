@@ -70,4 +70,4 @@ def get_queue_data():
     return Response(generate(), mimetype='text/event-stream')
 
 if __name__ == '__main__':
-    app.run(debug=True)#, host="10.0.2.52", port=5033)
+    app.run(debug=True, host="192.168.111.109", port=5033)

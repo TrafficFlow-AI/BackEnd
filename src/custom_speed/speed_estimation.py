@@ -105,7 +105,7 @@ class SpeedEstimator:
         # Etiqueta de velocidad a mostrar
         speed_label = f"#{track_id} - {current_speed} km/h" if track_id in self.dist_data else self.names[int(cls)]
         
-        # Color del cuadro (inicialmente verde)
+        # Color del cuadro verde
         bbox_color = (0, 255, 0)
         
         # Cambiar a color rojo si la velocidad supera los 80 km/h
