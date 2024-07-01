@@ -5,3 +5,5 @@ Flask-Session
 torch
 torchvision
 torchaudio
+gdown
+Flask-Cors

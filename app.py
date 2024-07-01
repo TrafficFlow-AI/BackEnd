@@ -3,9 +3,30 @@ from queue_detection import QueueTrack
 from flask import Flask, render_template_string, Response
 from flask_cors import CORS
 
+# make directori data
+import os
+os.makedirs("data", exist_ok=True)
 
 import time
 import json
+
+# download video of google drive
+import gdown
+
+# comprobar si existe data/videotrafico.mp4
+if os.path.exists("data/videotrafico.mp4"):
+    print("El archivo 'data/videotrafico.mp4' ya existe.")
+else:
+    url = "https://drive.google.com/file/d/1KEFYs9bs7-MdMTpsVRflW9Ql7N4nPYaN/view?usp=sharing"
+    output = "data/videotrafico.mp4"
+    gdown.download(url, output, fuzzy=True)
+    
+if os.path.exists("data/videotrafico2.mp4"):
+    print("El archivo 'data/videotrafico2.mp4' ya existe.")
+else:
+    url_1 = "https://drive.google.com/file/d/1KEYciT7TmfMvD388O3hrUmJF3UMuXk3i/view?usp=sharing"
+    output_1 = "data/videotrafico2.mp4"
+    gdown.download(url, output_1, fuzzy=True)
 
 speed_tracker = SpeedTrack()
 queue_manager = QueueTrack()
@@ -71,4 +92,4 @@ def get_queue_data():
     return Response(generate(), mimetype='text/event-stream')
 
 if __name__ == '__main__':
-    app.run(debug=True, host="192.168.111.109", port=5033)
+    app.run(debug=True)
